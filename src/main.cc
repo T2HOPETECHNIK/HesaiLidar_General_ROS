@@ -37,6 +37,7 @@ public:
     nh.getParam("publish_type", m_sPublishType);
     nh.getParam("timestamp_type", m_sTimestampType);
     nh.getParam("data_type", dataType);
+    nh.getParam("frame_id", frame_id);
 
     if(!pcapFile.empty()){
       hsdk = new PandarGeneralSDK(pcapFile, boost::bind(&HesaiLidarClient::lidarCallback, this, _1, _2, _3), \
@@ -91,6 +92,7 @@ public:
   {
     if(m_sPublishType == "both" || m_sPublishType == "points"){
       pcl_conversions::toPCL(ros::Time(timestamp), cld->header.stamp);
+      cld->header.frame_id = frame_id;
       sensor_msgs::PointCloud2 output;
       pcl::toROSMsg(*cld, output);
       lidarPublisher.publish(output);
@@ -115,6 +117,7 @@ private:
   string m_sPublishType;
   string m_sTimestampType;
   ros::Subscriber packetSubscriber;
+  string frame_id;
 };
 
 int main(int argc, char **argv)
