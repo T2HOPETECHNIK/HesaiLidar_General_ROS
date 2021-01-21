@@ -91,7 +91,7 @@ public:
   void lidarCallback(boost::shared_ptr<PPointCloud> cld, double timestamp, hesai_lidar::PandarScanPtr scan) // the timestamp from first point cloud of cld
   {
     if(m_sPublishType == "both" || m_sPublishType == "points"){
-      pcl_conversions::toPCL(ros::Time(timestamp), cld->header.stamp);
+      pcl_conversions::toPCL(ros::Time::now(), cld->header.stamp);
       cld->header.frame_id = frame_id;
       sensor_msgs::PointCloud2 output;
       pcl::toROSMsg(*cld, output);
