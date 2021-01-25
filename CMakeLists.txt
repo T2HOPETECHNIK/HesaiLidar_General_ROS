@@ -42,6 +42,7 @@ add_library(PandarGeneral
     src/HesaiLidar_General_SDK/src/PandarGeneralRaw/src/pcap_reader.cpp
     src/HesaiLidar_General_SDK/src/PandarGeneralRaw/src/pandarGeneral.cc
 )
+add_dependencies(PandarGeneral ${catkin_EXPORTED_TARGETS})
 target_include_directories(PandarGeneral PRIVATE
     src/HesaiLidar_General_SDK/src/PandarGeneralRaw/include
     src/HesaiLidar_General_SDK/src/PandarGeneralRaw/
@@ -61,6 +62,7 @@ add_library(PandarGeneralSDK SHARED
     src/HesaiLidar_General_SDK/src/tcp_command_client.c
     src/HesaiLidar_General_SDK/src/util.c
 )
+add_dependencies(PandarGeneralSDK ${catkin_EXPORTED_TARGETS})
 target_include_directories(PandarGeneralSDK PRIVATE
     src/HesaiLidar_General_SDK/
     src/HesaiLidar_General_SDK/include/
@@ -85,6 +87,7 @@ add_executable(hesai_lidar_node
     src/main.cc
 )
 
+add_dependencies(hesai_lidar_node ${catkin_EXPORTED_TARGETS})
 target_include_directories(hesai_lidar_node PRIVATE
     src/HesaiLidar_General_SDK/include
     src/HesaiLidar_General_SDK/src/PandarGeneralRaw/include
