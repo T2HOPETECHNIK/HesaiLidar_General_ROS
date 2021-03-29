@@ -96,7 +96,7 @@ public:
       sensor_msgs::PointCloud2 output;
       pcl::toROSMsg(*cld, output);
       lidarPublisher.publish(output);
-      printf("timestamp: %f, point size: %ld.\n",timestamp, cld->points.size());
+      //printf("timestamp: %f, point size: %ld.\n",timestamp, cld->points.size());
     }
     if(m_sPublishType == "both" || m_sPublishType == "raw"){
       packetPublisher.publish(scan);
